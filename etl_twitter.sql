@@ -23,7 +23,7 @@ EXCEPT
 SELECT userid,username FROM twitter_dw.username
 ORDER BY 1;
 
-VACUUM ANALYZE twitter.username;
+VACUUM ANALYZE twitter_dw.username;
 
 ----------------------------------------------------------------------------
 

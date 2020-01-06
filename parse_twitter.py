@@ -10,7 +10,7 @@ import GetOldTweets3 as got
 import boto3
 
 DATABASE, HOST, USER, PASSWORD = credentials.setDatabaseLogin()
-CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET = credentials.setTwitterTokens()
+# CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET = credentials.setTwitterTokens()
 
 ### variaveis
 outdir = '/home/ubuntu/scripts/load-dados-twitter/csv/'

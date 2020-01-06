@@ -32,7 +32,7 @@ outdir = '/home/ubuntu/scripts/load-dados-twitter/csv/'
 file = 'bigram.csv'
 query_app = "SELECT distinct company_id FROM twitter_dw.vw_twitter"
 query_company = 'SELECT distinct company FROM twitter_dw.vw_twitter'
-query_data = "SELECT DISTINCT week,year FROM twitter_dw.vw_twitter WHERE company_id = '{}' ORDER BY 2,1"
+query_data = "SELECT DISTINCT week,year FROM twitter_dw.vw_twitter WHERE company_id = '{}' AND week != date_part('week',current_date) ORDER BY 2,1"
 query_comentario = "SELECT tweet FROM twitter.tweets_all WHERE company_id = '{}' AND date_part('year',datetime) = {} AND date_part('week',datetime) = {} AND not tweet is NULL"
 tablename = 'twitter_dw.bigrams'
 
@@ -54,7 +54,7 @@ with open(outdir+file,'w', newline="\n", encoding="utf-8") as ofile:
         print('Parsing '+app+'...')
         cursor.execute(query_data.format(app))
         datas = [item for item in cursor.fetchall()]
-        for semana,ano in datas:
+        for semana,ano in [datas[-1]]:
             print('Ano: {} - Semana: {}'.format(ano,semana))
             cursor.execute(query_comentario.format(app,ano,semana))
             comments = [item[0] for item in cursor.fetchall()]
